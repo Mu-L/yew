@@ -41,6 +41,12 @@ impl From<&'_ str> for Key {
     }
 }
 
+impl From<String> for Key {
+    fn from(key: String) -> Self {
+        Self::from(key.as_str())
+    }
+}
+
 impl ImplicitClone for Key {}
 
 macro_rules! key_impl_from_to_string {
@@ -53,7 +59,6 @@ macro_rules! key_impl_from_to_string {
     };
 }
 
-key_impl_from_to_string!(String);
 key_impl_from_to_string!(char);
 key_impl_from_to_string!(u8);
 key_impl_from_to_string!(u16);
@@ -91,7 +96,7 @@ mod test {
                     <p key=13_u16></p>
                     <p key=14_u32></p>
                     <p key=15_u64></p>
-                    <p key=15_u128></p>
+                    <p key=16_u128></p>
                     <p key=21_isize></p>
                     <p key=22_i8></p>
                     <p key=23_i16></p>
